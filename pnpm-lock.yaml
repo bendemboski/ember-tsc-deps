@@ -6,7 +6,9 @@ settings:
 
 importers:
 
-  .:
+  .: {}
+
+  some-addon:
     dependencies:
       '@embroider/addon-shim':
         specifier: ^1.8.9

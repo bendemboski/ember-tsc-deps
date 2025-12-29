@@ -15,8 +15,10 @@ jobs:
   lint:
     name: "Lints"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./some-addon
     timeout-minutes: 10
-
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -32,6 +34,9 @@ jobs:
   test:
     name: "Tests"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./some-addon
     timeout-minutes: 10
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -50,12 +55,14 @@ jobs:
       # For the Try Scenarios
       - id: set-matrix
         run: |
-           echo "matrix=$(pnpm -s dlx @embroider/try list)" >> $GITHUB_OUTPUT
-          
+          echo "matrix=$(pnpm -s dlx @embroider/try list)" >> $GITHUB_OUTPUT
 
   floating:
     name: "Floating Dependencies"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./some-addon
     timeout-minutes: 10
 
     steps:
@@ -73,6 +80,9 @@ jobs:
   try-scenarios:
     name: ${{ matrix.name }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./some-addon
     needs: "test"
     timeout-minutes: 10
     strategy:
@@ -88,12 +98,12 @@ jobs:
           cache: pnpm
       - name: Apply Scenario
         run: |
-           pnpm dlx @embroider/try apply ${{ matrix.name }}
-          
+          pnpm dlx @embroider/try apply ${{ matrix.name }}
+
       - name: Install Dependencies
         run: pnpm install --no-lockfile
       - name: Run Tests
         run: |
           pnpm test
-          
+
         env: ${{ matrix.env }}
