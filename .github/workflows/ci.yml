@@ -28,6 +28,8 @@ jobs:
           cache: pnpm
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
+      - name: List rsvp
+        run: find .. -name rsvp | sort
       - name: Lint
         run: pnpm ember-tsc --noEmit --traceResolution
 
