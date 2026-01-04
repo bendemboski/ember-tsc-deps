@@ -1,0 +1,16 @@
+{
+  "name": "ember-tsc-deps",
+  "version": "0.0.0",
+  "description": "The default blueprint for Embroider v2 addons.",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "packageManager": "pnpm@10.27.0",
+  "volta": {
+    "node": "22.21.1",
+    "pnpm": "10.27.0"
+  }
+}
