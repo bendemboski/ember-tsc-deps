@@ -8,5 +8,9 @@
   "repository": "",
   "license": "MIT",
   "author": "",
-  "packageManager": "pnpm@10.27.0"
+  "packageManager": "pnpm@10.27.0",
+  "volta": {
+    "node": "22.21.1",
+    "pnpm": "10.27.0"
+  }
 }
